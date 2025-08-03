@@ -17,7 +17,6 @@
 
 package org.apache.commons.cli;
 
-import org.checkerframework.dataflow.qual.Impure;
 import java.io.File;
 import java.net.URL;
 import java.util.Calendar;
@@ -33,7 +32,6 @@ import junit.framework.TestCase;
  */
 public class PatternOptionBuilderTest extends TestCase
 {
-    @Impure
     public void testSimplePattern() throws Exception
     {
         Options options = PatternOptionBuilder.parsePattern("a:b@cde>f+n%t/m*z#");
@@ -80,14 +78,12 @@ public class PatternOptionBuilderTest extends TestCase
         }
     }
 
-    @Impure
     public void testEmptyPattern() throws Exception
     {
         Options options = PatternOptionBuilder.parsePattern("");
         assertTrue(options.getOptions().isEmpty());
     }
 
-    @Impure
     public void testUntypedPattern() throws Exception
     {
         Options options = PatternOptionBuilder.parsePattern("abc");
@@ -102,7 +98,6 @@ public class PatternOptionBuilderTest extends TestCase
         assertNull("value c", line.getOptionObject('c'));
     }
 
-    @Impure
     public void testNumberPattern() throws Exception
     {
         Options options = PatternOptionBuilder.parsePattern("n%d%x%");
@@ -118,7 +113,6 @@ public class PatternOptionBuilderTest extends TestCase
         assertNull("x object", line.getOptionObject("x"));
     }
 
-    @Impure
     public void testClassPattern() throws Exception
     {
         Options options = PatternOptionBuilder.parsePattern("c+d+");
@@ -129,7 +123,6 @@ public class PatternOptionBuilderTest extends TestCase
         assertNull("d value", line.getOptionObject("d"));
     }
 
-    @Impure
     public void testObjectPattern() throws Exception
     {
         Options options = PatternOptionBuilder.parsePattern("o@i@n@");
@@ -141,7 +134,6 @@ public class PatternOptionBuilderTest extends TestCase
         assertNull("n value", line.getOptionObject("n"));
     }
 
-    @Impure
     public void testURLPattern() throws Exception
     {
         Options options = PatternOptionBuilder.parsePattern("u/v/");
@@ -152,7 +144,6 @@ public class PatternOptionBuilderTest extends TestCase
         assertNull("v value", line.getOptionObject("v"));
     }
 
-    @Impure
     public void testExistingFilePattern() throws Exception
     {
         Options options = PatternOptionBuilder.parsePattern("f<");
@@ -164,7 +155,6 @@ public class PatternOptionBuilderTest extends TestCase
         // todo test if an error is returned if the file doesn't exists (when it's implemented)
     }
 
-    @Impure
     public void testRequiredOption() throws Exception
     {
         Options options = PatternOptionBuilder.parsePattern("!n%m%");

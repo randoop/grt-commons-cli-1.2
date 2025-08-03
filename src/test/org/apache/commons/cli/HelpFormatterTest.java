@@ -17,8 +17,6 @@
 
 package org.apache.commons.cli;
 
-import org.checkerframework.dataflow.qual.Pure;
-import org.checkerframework.dataflow.qual.Impure;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -37,7 +35,6 @@ public class HelpFormatterTest extends TestCase
 {
     private static final String EOL = System.getProperty("line.separator");
 
-    @Impure
     public void testFindWrapPos() throws Exception
     {
         HelpFormatter hf = new HelpFormatter();
@@ -52,7 +49,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("wrap position 3", 4, hf.findWrapPos(text, 3, 0));
     }
 
-    @Impure
     public void testPrintWrapped() throws Exception
     {
         StringBuffer sb = new StringBuffer();
@@ -98,7 +94,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("multi-line padded text", expected, sb.toString());
     }
 
-    @Impure
     public void testPrintOptions() throws Exception
     {
         StringBuffer sb = new StringBuffer();
@@ -148,7 +143,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("multiple wrapped options", expected, sb.toString());
     }
 
-    @Impure
     public void testPrintHelpWithEmptySyntax()
     {
         HelpFormatter formatter = new HelpFormatter();
@@ -173,7 +167,6 @@ public class HelpFormatterTest extends TestCase
         }
     }
 
-    @Impure
     public void testAutomaticUsage() throws Exception
     {
         HelpFormatter hf = new HelpFormatter();
@@ -199,7 +192,6 @@ public class HelpFormatterTest extends TestCase
 
     // This test ensures the options are properly sorted
     // See https://issues.apache.org/jira/browse/CLI-131
-    @Impure
     public void testPrintUsage()
     {
         Option optionA = new Option("a", "first");
@@ -218,7 +210,6 @@ public class HelpFormatterTest extends TestCase
     }
 
     // uses the test for CLI-131 to implement CLI-155
-    @Impure
     public void testPrintSortedUsage()
     {
         Options opts = new Options();
@@ -229,8 +220,6 @@ public class HelpFormatterTest extends TestCase
         HelpFormatter helpFormatter = new HelpFormatter();
         helpFormatter.setOptionComparator(new Comparator()
         {
-            @Pure
-            @Impure
             public int compare(Object o1, Object o2)
             {
                 // reverses the fuctionality of the default comparator
@@ -246,7 +235,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("usage: app [-c] [-b] [-a]" + EOL, out.toString());
     }
 
-    @Impure
     public void testPrintSortedUsageWithNullComparator()
     {
         Options opts = new Options();
@@ -263,7 +251,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("usage: app [-a] [-b] [-c]" + EOL, out.toString());
     }
 
-    @Impure
     public void testPrintOptionGroupUsage()
     {
         OptionGroup group = new OptionGroup();
@@ -282,7 +269,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("usage: app [-a | -b | -c]" + EOL, out.toString());
     }
 
-    @Impure
     public void testPrintRequiredOptionGroupUsage()
     {
         OptionGroup group = new OptionGroup();
@@ -302,7 +288,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("usage: app -a | -b | -c" + EOL, out.toString());
     }
 
-    @Impure
     public void testPrintOptionWithEmptyArgNameUsage()
     {
         Option option = new Option("f", true, null);
@@ -320,7 +305,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("usage: app -f" + EOL, out.toString());
     }
 
-    @Impure
     public void testRtrim()
     {
         HelpFormatter formatter = new HelpFormatter();
@@ -330,7 +314,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("  foo", formatter.rtrim("  foo  "));
     }
 
-    @Impure
     public void testAccessors()
     {
         HelpFormatter formatter = new HelpFormatter();
@@ -360,7 +343,6 @@ public class HelpFormatterTest extends TestCase
         assertEquals("width", 80, formatter.getWidth());
     }
     
-    @Impure
     public void testHeaderStartingWithLineSeparator()
     {
         // related to Bugzilla #21215
@@ -379,7 +361,6 @@ public class HelpFormatterTest extends TestCase
                 , out.toString());
     }
 
-    @Impure
     public void testOptionWithoutShortFormat()
     {
         // related to Bugzilla #19383 (CLI-67)
@@ -400,7 +381,6 @@ public class HelpFormatterTest extends TestCase
     }
     
 
-    @Impure
     public void testOptionWithoutShortFormat2()
     {
         // related to Bugzilla #27635 (CLI-26)

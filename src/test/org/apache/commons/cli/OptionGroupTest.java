@@ -17,7 +17,6 @@
 
 package org.apache.commons.cli;
 
-import org.checkerframework.dataflow.qual.Impure;
 import junit.framework.TestCase;
 
 /**
@@ -29,7 +28,6 @@ public class OptionGroupTest extends TestCase
     private Options _options = null;
     private CommandLineParser parser = new PosixParser();
 
-    @Impure
     public void setUp()
     {
         Option file = new Option( "f", "file", false, "file to process" );
@@ -57,7 +55,6 @@ public class OptionGroupTest extends TestCase
         _options.addOption( "r", "revision", false, "revision number" );
     }
 
-    @Impure
     public void testSingleOptionFromGroup() throws Exception
     {
         String[] args = new String[] { "-f" };
@@ -72,7 +69,6 @@ public class OptionGroupTest extends TestCase
         assertTrue( "Confirm no extra args", cl.getArgList().size() == 0);
     }
 
-    @Impure
     public void testSingleOption() throws Exception
     {
         String[] args = new String[] { "-r" };
@@ -87,7 +83,6 @@ public class OptionGroupTest extends TestCase
         assertTrue( "Confirm no extra args", cl.getArgList().size() == 0);
     }
 
-    @Impure
     public void testTwoValidOptions() throws Exception
     {
         String[] args = new String[] { "-r", "-f" };
@@ -102,7 +97,6 @@ public class OptionGroupTest extends TestCase
         assertTrue( "Confirm no extra args", cl.getArgList().size() == 0);
     }
 
-    @Impure
     public void testSingleLongOption() throws Exception
     {
         String[] args = new String[] { "--file" };
@@ -117,7 +111,6 @@ public class OptionGroupTest extends TestCase
         assertTrue( "Confirm no extra args", cl.getArgList().size() == 0);
     }
 
-    @Impure
     public void testTwoValidLongOptions() throws Exception
     {
         String[] args = new String[] { "--revision", "--file" };
@@ -132,7 +125,6 @@ public class OptionGroupTest extends TestCase
         assertTrue( "Confirm no extra args", cl.getArgList().size() == 0);
     }
 
-    @Impure
     public void testNoOptionsExtraArgs() throws Exception
     {
         String[] args = new String[] { "arg1", "arg2" };
@@ -147,7 +139,6 @@ public class OptionGroupTest extends TestCase
         assertTrue( "Confirm TWO extra args", cl.getArgList().size() == 2);
     }
 
-    @Impure
     public void testTwoOptionsFromGroup() throws Exception
     {
         String[] args = new String[] { "-f", "-d" };
@@ -165,7 +156,6 @@ public class OptionGroupTest extends TestCase
         }
     }
 
-    @Impure
     public void testTwoLongOptionsFromGroup() throws Exception
     {
         String[] args = new String[] { "--file", "--directory" };
@@ -183,7 +173,6 @@ public class OptionGroupTest extends TestCase
         }
     }
 
-    @Impure
     public void testTwoOptionsFromDifferentGroup() throws Exception
     {
         String[] args = new String[] { "-f", "-s" };
@@ -197,7 +186,6 @@ public class OptionGroupTest extends TestCase
         assertTrue( "Confirm NO extra args", cl.getArgList().size() == 0);
     }
 
-    @Impure
     public void testValidLongOnlyOptions() throws Exception
     {
         CommandLine cl1 = parser.parse(_options, new String[]{"--export"});
@@ -207,7 +195,6 @@ public class OptionGroupTest extends TestCase
         assertTrue("Confirm --import is set", cl2.hasOption("import"));
     }
 
-    @Impure
     public void testToString()
     {
         OptionGroup group1 = new OptionGroup();
@@ -227,7 +214,6 @@ public class OptionGroupTest extends TestCase
         }
     }
 
-    @Impure
     public void testGetNames()
     {
         OptionGroup group = new OptionGroup();

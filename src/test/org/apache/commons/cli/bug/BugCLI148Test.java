@@ -17,7 +17,6 @@
 
 package org.apache.commons.cli.bug;
 
-import org.checkerframework.dataflow.qual.Impure;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.Option;
@@ -34,7 +33,6 @@ import junit.framework.TestCase;
  */
 public class BugCLI148Test  extends TestCase {
 
-    @Impure
     public void testWorkaround1() throws Exception
     {
         Options options = buildCommandLineOptions();
@@ -45,7 +43,6 @@ public class BugCLI148Test  extends TestCase {
         assertEquals("-something", commandLine.getOptionValue( 't'));
     }
 
-    @Impure
     public void testWorkaround2() throws Exception
     {
         Options options = buildCommandLineOptions();
@@ -56,7 +53,6 @@ public class BugCLI148Test  extends TestCase {
         assertEquals("-something", commandLine.getOptionValue( 't'));
     }
 
-    @Impure
     private Options buildCommandLineOptions()
     {
         Option t = OptionBuilder.withArgName( "t").hasArg().create('t');

@@ -16,8 +16,6 @@
  */
 
 package org.apache.commons.cli;
-import org.checkerframework.dataflow.qual.SideEffectFree;
-import org.checkerframework.dataflow.qual.Impure;
 
 /**
  * @author Emmanuel Bourg
@@ -25,38 +23,32 @@ import org.checkerframework.dataflow.qual.Impure;
  */
 public class BasicParserTest extends ParserTestCase
 {
-    @Impure
     public void setUp()
     {
         super.setUp();
         parser = new BasicParser();
     }
 
-    @SideEffectFree
     public void testPropertiesOption() throws Exception
     {
         // not supported by the BasicParser
     }
 
-    @SideEffectFree
     public void testShortWithEqual() throws Exception
     {
         // not supported by the BasicParser
     }
 
-    @SideEffectFree
     public void testShortWithoutEqual() throws Exception
     {
         // not supported by the BasicParser
     }
 
-    @SideEffectFree
     public void testLongWithEqual() throws Exception
     {
         // not supported by the BasicParser
     }
 
-    @SideEffectFree
     public void testLongWithEqualSingleDash() throws Exception
     {
         // not supported by the BasicParser

@@ -17,12 +17,10 @@
 
 package org.apache.commons.cli;
 
-import org.checkerframework.dataflow.qual.Impure;
 import junit.framework.TestCase;
 
 public class OptionBuilderTest extends TestCase {
 
-    @Impure
     public void testCompleteOption( ) {
         Option simple = OptionBuilder.withLongOpt( "simple option")
                                      .hasArg( )
@@ -41,7 +39,6 @@ public class OptionBuilderTest extends TestCase {
         assertTrue( simple.hasArgs() );
     }
 
-    @Impure
     public void testTwoCompleteOptions( ) {
         Option simple = OptionBuilder.withLongOpt( "simple option")
                                      .hasArg( )
@@ -73,7 +70,6 @@ public class OptionBuilderTest extends TestCase {
         assertTrue( !simple.hasArgs() );
     }
 
-    @Impure
     public void testBaseOptionCharOpt() {
         Option base = OptionBuilder.withDescription( "option description")
                                    .create( 'o' );
@@ -83,7 +79,6 @@ public class OptionBuilderTest extends TestCase {
         assertTrue( !base.hasArg() );
     }
 
-    @Impure
     public void testBaseOptionStringOpt() {
         Option base = OptionBuilder.withDescription( "option description")
                                    .create( "o" );
@@ -93,7 +88,6 @@ public class OptionBuilderTest extends TestCase {
         assertTrue( !base.hasArg() );
     }
 
-    @Impure
     public void testSpecialOptChars() throws Exception
     {
         // '?'
@@ -105,7 +99,6 @@ public class OptionBuilderTest extends TestCase {
         assertEquals("@", opt2.getOpt());
     }
 
-    @Impure
     public void testOptionArgNumbers()
     {
         Option opt = OptionBuilder.withDescription( "option description" )
@@ -114,7 +107,6 @@ public class OptionBuilderTest extends TestCase {
         assertEquals( 2, opt.getArgs() );
     }
 
-    @Impure
     public void testIllegalOptions() {
         // bad single character option
         try {
@@ -144,7 +136,6 @@ public class OptionBuilderTest extends TestCase {
         }
     }
 
-    @Impure
     public void testCreateIncompleteOption() {
         try
         {
@@ -160,7 +151,6 @@ public class OptionBuilderTest extends TestCase {
         }
     }
 
-    @Impure
     public void testBuilderIsResettedAlways() {
         try
         {

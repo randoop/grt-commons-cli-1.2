@@ -17,7 +17,6 @@
 
 package org.apache.commons.cli;
 
-import org.checkerframework.dataflow.qual.Impure;
 import junit.framework.TestCase;
 
 /**
@@ -37,7 +36,6 @@ import junit.framework.TestCase;
  */
 public class ApplicationTest extends TestCase {
 
-    @Impure
     public void testLs() throws Exception {
         // create the command line parser
         CommandLineParser parser = new PosixParser();
@@ -64,7 +62,6 @@ public class ApplicationTest extends TestCase {
     /**
      * Ant test
      */
-    @Impure
     public void testAnt() throws Exception {
         // use the GNU parser
         CommandLineParser parser = new GnuParser( );
@@ -106,7 +103,6 @@ public class ApplicationTest extends TestCase {
         assertTrue( line.hasOption( "projecthelp") );
     }
 
-    @Impure
     public void testGroovy() throws Exception {
         Options options = new Options();
 
@@ -177,7 +173,6 @@ public class ApplicationTest extends TestCase {
     /**
      * author Slawek Zachcial
      */
-    @Impure
     public void testMan()
     {
         String cmdLine =

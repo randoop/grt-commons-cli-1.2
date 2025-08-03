@@ -17,7 +17,6 @@
 
 package org.apache.commons.cli;
 
-import org.checkerframework.dataflow.qual.Impure;
 import java.util.Properties;
 
 import junit.framework.TestCase;
@@ -28,7 +27,6 @@ import junit.framework.TestCase;
  */
 public class CommandLineTest extends TestCase
 {
-    @Impure
     public void testGetOptionProperties() throws Exception
     {
         String[] args = new String[] { "-Dparam1=value1", "-Dparam2=value2", "-Dparam3", "-Dparam4=value4", "-D", "--property", "foo=bar" };

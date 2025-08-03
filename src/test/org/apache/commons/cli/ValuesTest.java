@@ -17,7 +17,6 @@
 
 package org.apache.commons.cli;
 
-import org.checkerframework.dataflow.qual.Impure;
 import java.util.Arrays;
 
 import junit.framework.TestCase;
@@ -27,7 +26,6 @@ public class ValuesTest extends TestCase
     /** CommandLine instance */
     private CommandLine _cmdline = null;
 
-    @Impure
     public void setUp() throws Exception
     {
         Options options = new Options();
@@ -67,7 +65,6 @@ public class ValuesTest extends TestCase
         _cmdline = parser.parse(options,args);
     }
 
-    @Impure
     public void testShortArgs()
     {
         assertTrue( _cmdline.hasOption("a") );
@@ -77,7 +74,6 @@ public class ValuesTest extends TestCase
         assertNull( _cmdline.getOptionValues("c") );
     }
 
-    @Impure
     public void testShortArgsWithValue()
     {
         assertTrue( _cmdline.hasOption("b") );
@@ -89,7 +85,6 @@ public class ValuesTest extends TestCase
         assertEquals(1, _cmdline.getOptionValues("d").length);
     }
 
-    @Impure
     public void testMultipleArgValues()
     {
         String[] result = _cmdline.getOptionValues("e");
@@ -99,7 +94,6 @@ public class ValuesTest extends TestCase
         assertTrue( Arrays.equals( values, _cmdline.getOptionValues("e") ) );
     }
 
-    @Impure
     public void testTwoArgValues()
     {
         String[] result = _cmdline.getOptionValues("g");
@@ -109,7 +103,6 @@ public class ValuesTest extends TestCase
         assertTrue( Arrays.equals( values, _cmdline.getOptionValues("g") ) );
     }
 
-    @Impure
     public void testComplexValues()
     {
         String[] result = _cmdline.getOptionValues("h");
@@ -120,7 +113,6 @@ public class ValuesTest extends TestCase
         assertTrue( Arrays.equals( values, _cmdline.getOptionValues("h") ) );
     }
 
-    @Impure
     public void testExtraArgs()
     {
         String[] args = new String[] { "arg1", "arg2", "arg3" };
@@ -128,7 +120,6 @@ public class ValuesTest extends TestCase
         assertTrue( Arrays.equals( args, _cmdline.getArgs() ) );
     }
 
-    @Impure
     public void testCharSeparator()
     {
         // tests the char methods of CommandLine that delegate to

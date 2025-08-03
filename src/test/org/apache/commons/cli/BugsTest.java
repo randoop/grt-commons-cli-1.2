@@ -17,7 +17,6 @@
 
 package org.apache.commons.cli;
 
-import org.checkerframework.dataflow.qual.Impure;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -29,7 +28,6 @@ import junit.framework.TestCase;
 
 public class BugsTest extends TestCase
 {
-    @Impure
     public void test11457() throws Exception
     {
         Options options = new Options();
@@ -42,7 +40,6 @@ public class BugsTest extends TestCase
         assertTrue(cmd.hasOption("verbose"));
     }
 
-    @Impure
     public void test11458() throws Exception
     {
         Options options = new Options();
@@ -86,7 +83,6 @@ public class BugsTest extends TestCase
         }
     }
 
-    @Impure
     public void test11680() throws Exception
     {
         Options options = new Options();
@@ -102,7 +98,6 @@ public class BugsTest extends TestCase
         cmd.getOptionValue("m", "default m");
     }
 
-    @Impure
     public void test11456() throws Exception
     {
         // Posix 
@@ -128,7 +123,6 @@ public class BugsTest extends TestCase
         assertEquals( cmd.getOptionValue( 'b' ), "value" );
     }
 
-    @Impure
     public void test12210() throws Exception
     {
         // create the main options object which will handle the first parameter
@@ -185,7 +179,6 @@ public class BugsTest extends TestCase
         }
     }
 
-    @Impure
     public void test13425() throws Exception
     {
         Options options = new Options();
@@ -222,7 +215,6 @@ public class BugsTest extends TestCase
         fail( "MissingArgumentException not caught." );
     }
 
-    @Impure
     public void test13666() throws Exception
     {
         Options options = new Options();
@@ -253,7 +245,6 @@ public class BugsTest extends TestCase
         }
     }
 
-    @Impure
     public void test13935() throws Exception
     {
         OptionGroup directions = new OptionGroup();
@@ -331,7 +322,6 @@ public class BugsTest extends TestCase
         }
     }
 
-    @Impure
     public void test14786() throws Exception
     {
         Option o = OptionBuilder.isRequired().withDescription("test").create("test");
@@ -347,7 +337,6 @@ public class BugsTest extends TestCase
         assertTrue( line.hasOption( "test" ) );
     }
 
-    @Impure
     public void test15046() throws Exception
     {
         CommandLineParser parser = new PosixParser();
@@ -365,7 +354,6 @@ public class BugsTest extends TestCase
         assertTrue( !line.hasOption("c") );
     }
 
-    @Impure
     public void test15648() throws Exception
     {
         CommandLineParser parser = new PosixParser();
@@ -377,7 +365,6 @@ public class BugsTest extends TestCase
         assertEquals( "Two Words", line.getOptionValue( "m" ) );
     }
     
-    @Impure
     public void test31148() throws ParseException
     {
         Option multiArgOption = new Option("o","option with multiple args");

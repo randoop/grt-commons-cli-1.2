@@ -17,7 +17,6 @@
 
 package org.apache.commons.cli;
 
-import org.checkerframework.dataflow.qual.Impure;
 import junit.framework.TestCase;
 
 public class ArgumentIsOptionTest extends TestCase
@@ -25,7 +24,6 @@ public class ArgumentIsOptionTest extends TestCase
     private Options options = null;
     private CommandLineParser parser = null;
 
-    @Impure
     public void setUp()
     {
         options = new Options().addOption("p", false, "Option p").addOption("attr", true, "Option accepts argument");
@@ -33,7 +31,6 @@ public class ArgumentIsOptionTest extends TestCase
         parser = new PosixParser();
     }
 
-    @Impure
     public void testOptionAndOptionWithArgument() throws Exception
     {
         String[] args = new String[]{
@@ -49,7 +46,6 @@ public class ArgumentIsOptionTest extends TestCase
         assertTrue("Confirm all arguments recognized", cl.getArgs().length == 0);
     }
 
-    @Impure
     public void testOptionWithArgument() throws Exception
     {
         String[] args = new String[]{
@@ -65,7 +61,6 @@ public class ArgumentIsOptionTest extends TestCase
         assertTrue("Confirm all arguments recognized", cl.getArgs().length == 0);
     }
 
-    @Impure
     public void testOption() throws Exception
     {
         String[] args = new String[]{

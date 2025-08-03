@@ -17,7 +17,6 @@
 
 package org.apache.commons.cli.bug;
 
-import org.checkerframework.dataflow.qual.Impure;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
@@ -32,7 +31,6 @@ import junit.framework.TestCase;
  */
 public class BugCLI13Test extends TestCase
 {
-    @Impure
     public void testCLI13() throws ParseException
     {
         final String debugOpt = "debug";
