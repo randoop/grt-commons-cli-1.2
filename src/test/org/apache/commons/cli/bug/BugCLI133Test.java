@@ -17,6 +17,7 @@
 
 package org.apache.commons.cli.bug;
 
+import org.checkerframework.dataflow.qual.Impure;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -29,6 +30,7 @@ import junit.framework.TestCase;
  * @author brianegge
  */
 public class BugCLI133Test extends TestCase {
+    @Impure
     public void testOrder() throws ParseException {
         Option optionA = new Option("a", "first");
         Options opts = new Options();

@@ -16,6 +16,7 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 
 /**
  * Contains useful helper methods for classes within this package.
@@ -33,6 +34,7 @@ class Util
      *
      * @return the new String.
      */
+    @SideEffectFree
     static String stripLeadingHyphens(String str)
     {
         if (str == null)
@@ -60,6 +62,7 @@ class Util
      *
      * @return The string without the leading and trailing quotes.
      */
+    @SideEffectFree
     static String stripLeadingAndTrailingQuotes(String str)
     {
         if (str.startsWith("\""))

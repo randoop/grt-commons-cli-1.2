@@ -17,6 +17,8 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
@@ -91,6 +93,7 @@ public class PatternOptionBuilder
      * @param ch the specified character
      * @return The class that <code>ch</code> represents
      */
+    @Pure
     public static Object getValueClass(char ch)
     {
         switch (ch)
@@ -125,6 +128,7 @@ public class PatternOptionBuilder
      * @param ch the specified character
      * @return true if <code>ch</code> is a value code, otherwise false.
      */
+    @Pure
     public static boolean isValueCode(char ch)
     {
         return ch == '@'
@@ -145,6 +149,7 @@ public class PatternOptionBuilder
      * @param pattern the pattern string
      * @return The {@link Options} instance
      */
+    @Impure
     public static Options parsePattern(String pattern)
     {
         char opt = ' ';

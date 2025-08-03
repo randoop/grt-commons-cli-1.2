@@ -17,6 +17,7 @@
 
 package org.apache.commons.cli.bug;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -31,6 +32,7 @@ import junit.framework.TestCase;
  */
 public class BugCLI18Test extends TestCase
 {
+    @Impure
     public void testCLI18()
     {
         Options options = new Options();

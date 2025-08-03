@@ -17,6 +17,9 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
 import java.util.List;
 import java.util.Iterator;
 
@@ -37,6 +40,8 @@ public class MissingOptionException extends ParseException
      *
      * @param message the detail message
      */
+    @SideEffectFree
+    @Impure
     public MissingOptionException(String message)
     {
         super(message);
@@ -49,6 +54,7 @@ public class MissingOptionException extends ParseException
      * @param missingOptions the list of missing options
      * @since 1.2
      */
+    @Impure
     public MissingOptionException(List missingOptions)
     {
         this(createMessage(missingOptions));
@@ -61,6 +67,7 @@ public class MissingOptionException extends ParseException
      * @return the missing options
      * @since 1.2
      */
+    @Pure
     public List getMissingOptions()
     {
         return missingOptions;
@@ -72,6 +79,7 @@ public class MissingOptionException extends ParseException
      * @param missingOptions
      * @since 1.2
      */
+    @Impure
     private static String createMessage(List missingOptions)
     {
         StringBuffer buff = new StringBuffer("Missing required option");

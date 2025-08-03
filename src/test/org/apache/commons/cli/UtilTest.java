@@ -17,6 +17,7 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
 import junit.framework.TestCase;
 
 /**
@@ -24,6 +25,7 @@ import junit.framework.TestCase;
  */
 public class UtilTest extends TestCase
 {
+    @Impure
     public void testStripLeadingHyphens()
     {
         assertEquals("f", Util.stripLeadingHyphens("-f"));
@@ -32,6 +34,7 @@ public class UtilTest extends TestCase
         assertNull(Util.stripLeadingHyphens(null));
     }
 
+    @Impure
     public void testStripLeadingAndTrailingQuotes()
     {
         assertEquals("foo", Util.stripLeadingAndTrailingQuotes("\"foo\""));

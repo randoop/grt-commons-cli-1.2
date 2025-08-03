@@ -17,6 +17,7 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -48,6 +49,7 @@ public class PosixParser extends Parser
      * all of <code>tokens</code> entries and set <code>eatTheRest</code>
      * to false.
      */
+    @Impure
     private void init()
     {
         eatTheRest = false;
@@ -92,6 +94,7 @@ public class PosixParser extends Parser
      * when an non option is found.
      * @return The flattened <code>arguments</code> String array.
      */
+    @Impure
     protected String[] flatten(Options options, String[] arguments, boolean stopAtNonOption)
     {
         init();
@@ -161,6 +164,7 @@ public class PosixParser extends Parser
      *
      * @param iter An iterator over the remaining tokens
      */
+    @Impure
     private void gobble(Iterator iter)
     {
         if (eatTheRest)
@@ -179,6 +183,7 @@ public class PosixParser extends Parser
      *
      * @param value The current token
      */
+    @Impure
     private void processNonOptionToken(String value, boolean stopAtNonOption)
     {
         if (stopAtNonOption && (currentOption == null || !currentOption.hasArg()))
@@ -202,6 +207,7 @@ public class PosixParser extends Parser
      * @param stopAtNonOption Specifies whether flattening should halt
      * at the first non option.
      */
+    @Impure
     private void processOptionToken(String token, boolean stopAtNonOption)
     {
         if (stopAtNonOption && !options.hasOption(token))
@@ -243,6 +249,7 @@ public class PosixParser extends Parser
      * @param stopAtNonOption Specifies whether to stop processing
      * at the first non-Option encountered.
      */
+    @Impure
     protected void burstToken(String token, boolean stopAtNonOption)
     {
         for (int i = 1; i < token.length(); i++)

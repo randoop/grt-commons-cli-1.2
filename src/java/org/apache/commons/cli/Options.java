@@ -17,6 +17,9 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,6 +68,7 @@ public class Options implements Serializable
      * @param group the OptionGroup that is to be added
      * @return the resulting Options instance
      */
+    @Impure
     public Options addOptionGroup(OptionGroup group)
     {
         Iterator options = group.getOptions().iterator();
@@ -95,6 +99,7 @@ public class Options implements Serializable
      *
      * @return a Collection of OptionGroup instances.
      */
+    @Impure
     Collection getOptionGroups()
     {
         return new HashSet(optionGroups.values());
@@ -109,6 +114,7 @@ public class Options implements Serializable
      * @param description Self-documenting description
      * @return the resulting Options instance
      */
+    @Impure
     public Options addOption(String opt, boolean hasArg, String description)
     {
         addOption(opt, null, hasArg, description);
@@ -126,6 +132,7 @@ public class Options implements Serializable
      * @param description Self-documenting description
      * @return the resulting Options instance
      */
+    @Impure
     public Options addOption(String opt, String longOpt, boolean hasArg, String description)
     {
         addOption(new Option(opt, longOpt, hasArg, description));
@@ -139,6 +146,7 @@ public class Options implements Serializable
      * @param opt the option that is to be added
      * @return the resulting Options instance
      */
+    @Impure
     public Options addOption(Option opt)
     {
         String key = opt.getKey();
@@ -169,6 +177,8 @@ public class Options implements Serializable
      *
      * @return read-only Collection of {@link Option} objects in this descriptor
      */
+    @SideEffectFree
+    @Impure
     public Collection getOptions()
     {
         return Collections.unmodifiableCollection(helpOptions());
@@ -179,6 +189,7 @@ public class Options implements Serializable
      *
      * @return the List of Options
      */
+    @SideEffectFree
     List helpOptions()
     {
         return new ArrayList(shortOpts.values());
@@ -189,6 +200,7 @@ public class Options implements Serializable
      *
      * @return List of required options
      */
+    @Pure
     public List getRequiredOptions()
     {
         return requiredOpts;
@@ -201,6 +213,8 @@ public class Options implements Serializable
      * @param opt short or long name of the {@link Option}
      * @return the option represented by opt
      */
+    @SideEffectFree
+    @Impure
     public Option getOption(String opt)
     {
         opt = Util.stripLeadingHyphens(opt);
@@ -220,6 +234,8 @@ public class Options implements Serializable
      * @return true if the named {@link Option} is a member
      * of this {@link Options}
      */
+    @SideEffectFree
+    @Impure
     public boolean hasOption(String opt)
     {
         opt = Util.stripLeadingHyphens(opt);
@@ -234,6 +250,8 @@ public class Options implements Serializable
      * @return the OptionGroup if <code>opt</code> is part
      * of an OptionGroup, otherwise return null
      */
+    @Pure
+    @Impure
     public OptionGroup getOptionGroup(Option opt)
     {
         return (OptionGroup) optionGroups.get(opt.getKey());
@@ -244,6 +262,7 @@ public class Options implements Serializable
      *
      * @return Stringified form of this object
      */
+    @Impure
     public String toString()
     {
         StringBuffer buf = new StringBuffer();

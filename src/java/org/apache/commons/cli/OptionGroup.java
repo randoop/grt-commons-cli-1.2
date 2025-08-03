@@ -17,6 +17,9 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
@@ -48,6 +51,7 @@ public class OptionGroup implements Serializable
      * @param option the option to add to this group
      * @return this option group with the option added
      */
+    @Impure
     public OptionGroup addOption(Option option)
     {
         // key   - option name
@@ -61,6 +65,7 @@ public class OptionGroup implements Serializable
      * @return the names of the options in this group as a 
      * <code>Collection</code>
      */
+    @SideEffectFree
     public Collection getNames()
     {
         // the key set is the collection of names
@@ -70,6 +75,7 @@ public class OptionGroup implements Serializable
     /**
      * @return the options in this group as a <code>Collection</code>
      */
+    @SideEffectFree
     public Collection getOptions()
     {
         // the values are the collection of options
@@ -83,6 +89,7 @@ public class OptionGroup implements Serializable
      * @throws AlreadySelectedException if an option from this group has 
      * already been selected.
      */
+    @Impure
     public void setSelected(Option option) throws AlreadySelectedException
     {
         // if no option has already been selected or the 
@@ -101,6 +108,7 @@ public class OptionGroup implements Serializable
     /**
      * @return the selected option name
      */
+    @Pure
     public String getSelected()
     {
         return selected;
@@ -109,6 +117,7 @@ public class OptionGroup implements Serializable
     /**
      * @param required specifies if this group is required
      */
+    @Impure
     public void setRequired(boolean required)
     {
         this.required = required;
@@ -119,6 +128,7 @@ public class OptionGroup implements Serializable
      *
      * @return whether this option group is required
      */
+    @Pure
     public boolean isRequired()
     {
         return required;
@@ -129,6 +139,7 @@ public class OptionGroup implements Serializable
      * 
      * @return the stringified representation of this group
      */
+    @Impure
     public String toString()
     {
         StringBuffer buff = new StringBuffer();

@@ -16,6 +16,9 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.Impure;
 
 /**
  * Thrown when an option requiring an argument
@@ -35,6 +38,8 @@ public class MissingArgumentException extends ParseException
      *
      * @param message the detail message
      */
+    @SideEffectFree
+    @Impure
     public MissingArgumentException(String message)
     {
         super(message);
@@ -47,6 +52,8 @@ public class MissingArgumentException extends ParseException
      * @param option the option requiring an argument
      * @since 1.2
      */
+    @SideEffectFree
+    @Impure
     public MissingArgumentException(Option option)
     {
         this("Missing argument for option: " + option.getKey());
@@ -60,6 +67,7 @@ public class MissingArgumentException extends ParseException
      * @return the related option
      * @since 1.2
      */
+    @Pure
     public Option getOption()
     {
         return option;

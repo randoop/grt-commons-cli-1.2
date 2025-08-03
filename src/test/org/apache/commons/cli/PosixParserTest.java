@@ -16,6 +16,8 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Impure;
 
 /**
  * Test case for the PosixParser.
@@ -24,12 +26,14 @@ package org.apache.commons.cli;
  */
 public class PosixParserTest extends ParserTestCase
 {
+    @Impure
     public void setUp()
     {
         super.setUp();
         parser = new PosixParser();
     }
 
+    @Impure
     public void testBursting() throws Exception
     {
         String[] args = new String[] { "-acbtoast",
@@ -44,6 +48,7 @@ public class PosixParserTest extends ParserTestCase
         assertTrue( "Confirm size of extra args", cl.getArgList().size() == 2);
     }
 
+    @Impure
     public void testUnrecognizedOptionWithBursting() throws Exception
     {
         String[] args = new String[] { "-adbtoast", "foo", "bar" };
@@ -59,6 +64,7 @@ public class PosixParserTest extends ParserTestCase
         }
     }
 
+    @Impure
     public void testMissingArgWithBursting() throws Exception
     {
         String[] args = new String[] { "-acb" };
@@ -78,6 +84,7 @@ public class PosixParserTest extends ParserTestCase
         assertTrue( "Confirm MissingArgumentException caught", caught );
     }
 
+    @Impure
     public void testStopBursting() throws Exception
     {
         String[] args = new String[] { "-azc" };
@@ -90,6 +97,7 @@ public class PosixParserTest extends ParserTestCase
         assertTrue(cl.getArgList().contains("zc"));
     }
 
+    @Impure
     public void testStopBursting2() throws Exception
     {
         String[] args = new String[] { "-c",
@@ -112,6 +120,7 @@ public class PosixParserTest extends ParserTestCase
     /**
      * Real world test with long and short options.
      */
+    @Impure
     public void testLongOptionWithShort() throws Exception {
         Option help = new Option("h", "help", false, "print this message");
         Option version = new Option("v", "version", false, "print version information");
@@ -176,11 +185,13 @@ public class PosixParserTest extends ParserTestCase
         assertEquals(line.getOptionValue("file"), "filename");
     }
 
+    @SideEffectFree
     public void testLongWithEqualSingleDash() throws Exception
     {
         // not supported by the PosixParser
     }
 
+    @SideEffectFree
     public void testShortWithEqual() throws Exception
     {
         // not supported by the PosixParser

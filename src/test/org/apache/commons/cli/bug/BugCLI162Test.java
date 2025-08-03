@@ -18,6 +18,7 @@
 
 package org.apache.commons.cli.bug;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -36,6 +37,7 @@ public class BugCLI162Test extends TestCase {
     /** Constant for the line separator.*/
     private static final String CR = System.getProperty("line.separator");
 
+    @Impure
     public void testInfiniteLoop() {
         Options options = new Options();
         options.addOption("h", "help", false, "This is a looooong description");
@@ -44,6 +46,7 @@ public class BugCLI162Test extends TestCase {
         formatter.printHelp("app", options); // used to hang & crash
     }
 
+    @Impure
     public void testPrintHelpLongLines() throws ParseException, IOException {
         // Constants used for options
         final String OPT = "-";
@@ -231,6 +234,7 @@ public class BugCLI162Test extends TestCase {
         new HelpFormatter().printHelp(this.getClass().getName(), commandLineOptions);
     }
 
+    @Impure
     public void testLongLineChunking() throws ParseException, IOException {
         Options options = new Options();
         options.addOption("x", "extralongarg", false,
@@ -263,6 +267,7 @@ public class BugCLI162Test extends TestCase {
         assertEquals( "Long arguments did not split as expected", expected, sw.toString() );
     }
 
+    @Impure
     public void testLongLineChunkingIndentIgnored() throws ParseException, IOException {
         Options options = new Options();
         options.addOption("x", "extralongarg", false, "This description is Long." );

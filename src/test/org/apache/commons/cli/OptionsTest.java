@@ -17,6 +17,7 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -28,6 +29,7 @@ import junit.framework.TestCase;
  */
 public class OptionsTest extends TestCase
 {
+    @Impure
     public void testSimple()
     {
         Options opts = new Options();
@@ -39,6 +41,7 @@ public class OptionsTest extends TestCase
         assertTrue(opts.hasOption("b"));
     }
 
+    @Impure
     public void testDuplicateSimple()
     {
         Options opts = new Options();
@@ -48,6 +51,7 @@ public class OptionsTest extends TestCase
         assertEquals("last one in wins", "toggle -a*", opts.getOption("a").getDescription());
     }
 
+    @Impure
     public void testLong()
     {
         Options opts = new Options();
@@ -59,6 +63,7 @@ public class OptionsTest extends TestCase
         assertTrue(opts.hasOption("b"));
     }
 
+    @Impure
     public void testDuplicateLong()
     {
         Options opts = new Options();
@@ -67,6 +72,7 @@ public class OptionsTest extends TestCase
         assertEquals("last one in wins", "toggle -a*", opts.getOption("a").getDescription());
     }
 
+    @Impure
     public void testHelpOptions()
     {
         Option longOnly1 = OptionBuilder.withLongOpt("long-only1").create();
@@ -98,6 +104,7 @@ public class OptionsTest extends TestCase
         assertTrue("Everything in help should be in all", allOptions.containsAll(helpOptions));        
     }
 
+    @Impure
     public void testMissingOptionException() throws ParseException
     {
         Options options = new Options();
@@ -113,6 +120,7 @@ public class OptionsTest extends TestCase
         }
     }
 
+    @Impure
     public void testMissingOptionsException() throws ParseException
     {
         Options options = new Options();
@@ -129,6 +137,7 @@ public class OptionsTest extends TestCase
         }
     }
 
+    @Impure
     public void testToString()
     {
         Options options = new Options();
@@ -141,6 +150,7 @@ public class OptionsTest extends TestCase
         assertTrue("bar option missing", s.toLowerCase().indexOf("bar") != -1);
     }
 
+    @Impure
     public void testGetOptionsGroups()
     {
         Options options = new Options();

@@ -17,6 +17,9 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Pure;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -139,6 +142,7 @@ public class HelpFormatter
      *
      * @param width the new value of 'width'
      */
+    @Impure
     public void setWidth(int width)
     {
         this.defaultWidth = width;
@@ -149,6 +153,7 @@ public class HelpFormatter
      *
      * @return the 'width'
      */
+    @Pure
     public int getWidth()
     {
         return defaultWidth;
@@ -159,6 +164,7 @@ public class HelpFormatter
      *
      * @param padding the new value of 'leftPadding'
      */
+    @Impure
     public void setLeftPadding(int padding)
     {
         this.defaultLeftPad = padding;
@@ -169,6 +175,7 @@ public class HelpFormatter
      *
      * @return the 'leftPadding'
      */
+    @Pure
     public int getLeftPadding()
     {
         return defaultLeftPad;
@@ -179,6 +186,7 @@ public class HelpFormatter
      *
      * @param padding the new value of 'descPadding'
      */
+    @Impure
     public void setDescPadding(int padding)
     {
         this.defaultDescPad = padding;
@@ -189,6 +197,7 @@ public class HelpFormatter
      *
      * @return the 'descPadding'
      */
+    @Pure
     public int getDescPadding()
     {
         return defaultDescPad;
@@ -199,6 +208,7 @@ public class HelpFormatter
      *
      * @param prefix the new value of 'syntaxPrefix'
      */
+    @Impure
     public void setSyntaxPrefix(String prefix)
     {
         this.defaultSyntaxPrefix = prefix;
@@ -209,6 +219,7 @@ public class HelpFormatter
      *
      * @return the 'syntaxPrefix'
      */
+    @Pure
     public String getSyntaxPrefix()
     {
         return defaultSyntaxPrefix;
@@ -219,6 +230,7 @@ public class HelpFormatter
      *
      * @param newline the new value of 'newLine'
      */
+    @Impure
     public void setNewLine(String newline)
     {
         this.defaultNewLine = newline;
@@ -229,6 +241,7 @@ public class HelpFormatter
      *
      * @return the 'newLine'
      */
+    @Pure
     public String getNewLine()
     {
         return defaultNewLine;
@@ -239,6 +252,7 @@ public class HelpFormatter
      *
      * @param prefix the new value of 'optPrefix'
      */
+    @Impure
     public void setOptPrefix(String prefix)
     {
         this.defaultOptPrefix = prefix;
@@ -249,6 +263,7 @@ public class HelpFormatter
      *
      * @return the 'optPrefix'
      */
+    @Pure
     public String getOptPrefix()
     {
         return defaultOptPrefix;
@@ -259,6 +274,7 @@ public class HelpFormatter
      *
      * @param prefix the new value of 'longOptPrefix'
      */
+    @Impure
     public void setLongOptPrefix(String prefix)
     {
         this.defaultLongOptPrefix = prefix;
@@ -269,6 +285,7 @@ public class HelpFormatter
      *
      * @return the 'longOptPrefix'
      */
+    @Pure
     public String getLongOptPrefix()
     {
         return defaultLongOptPrefix;
@@ -279,6 +296,7 @@ public class HelpFormatter
      *
      * @param name the new value of 'argName'
      */
+    @Impure
     public void setArgName(String name)
     {
         this.defaultArgName = name;
@@ -289,6 +307,7 @@ public class HelpFormatter
      *
      * @return the 'argName'
      */
+    @Pure
     public String getArgName()
     {
         return defaultArgName;
@@ -299,6 +318,7 @@ public class HelpFormatter
      * 
      * Defaults to case-insensitive alphabetical sorting by option key
      */
+    @Pure
     public Comparator getOptionComparator()
     {
         return optionComparator;
@@ -309,6 +329,7 @@ public class HelpFormatter
      * 
      * Passing in a null parameter will set the ordering to the default mode
      */
+    @Impure
     public void setOptionComparator(Comparator comparator)
     {
         if (comparator == null)
@@ -329,6 +350,7 @@ public class HelpFormatter
      * @param cmdLineSyntax the syntax for this application
      * @param options the Options instance
      */
+    @Impure
     public void printHelp(String cmdLineSyntax, Options options)
     {
         printHelp(defaultWidth, cmdLineSyntax, null, options, null, false);
@@ -344,6 +366,7 @@ public class HelpFormatter
      * @param autoUsage whether to print an automatically generated
      * usage statement
      */
+    @Impure
     public void printHelp(String cmdLineSyntax, Options options, boolean autoUsage)
     {
         printHelp(defaultWidth, cmdLineSyntax, null, options, null, autoUsage);
@@ -359,6 +382,7 @@ public class HelpFormatter
      * @param options the Options instance
      * @param footer the banner to display at the end of the help
      */
+    @Impure
     public void printHelp(String cmdLineSyntax, String header, Options options, String footer)
     {
         printHelp(cmdLineSyntax, header, options, footer, false);
@@ -376,6 +400,7 @@ public class HelpFormatter
      * @param autoUsage whether to print an automatically generated
      * usage statement
      */
+    @Impure
     public void printHelp(String cmdLineSyntax, String header, Options options, String footer, boolean autoUsage)
     {
         printHelp(defaultWidth, cmdLineSyntax, header, options, footer, autoUsage);
@@ -392,6 +417,7 @@ public class HelpFormatter
      * @param options the Options instance
      * @param footer the banner to display at the end of the help
      */
+    @Impure
     public void printHelp(int width, String cmdLineSyntax, String header, Options options, String footer)
     {
         printHelp(width, cmdLineSyntax, header, options, footer, false);
@@ -410,6 +436,7 @@ public class HelpFormatter
      * @param autoUsage whether to print an automatically generated 
      * usage statement
      */
+    @Impure
     public void printHelp(int width, String cmdLineSyntax, String header,
                           Options options, String footer, boolean autoUsage)
     {
@@ -436,6 +463,7 @@ public class HelpFormatter
      *
      * @throws IllegalStateException if there is no room to print a line
      */
+    @Impure
     public void printHelp(PrintWriter pw, int width, String cmdLineSyntax, 
                           String header, Options options, int leftPad, 
                           int descPad, String footer)
@@ -463,6 +491,7 @@ public class HelpFormatter
      *
      * @throws IllegalStateException if there is no room to print a line
      */
+    @Impure
     public void printHelp(PrintWriter pw, int width, String cmdLineSyntax,
                           String header, Options options, int leftPad,
                           int descPad, String footer, boolean autoUsage)
@@ -503,6 +532,7 @@ public class HelpFormatter
      * @param options The command line Options
      *
      */
+    @Impure
     public void printUsage(PrintWriter pw, int width, String app, Options options)
     {
         // initialise the string buffer
@@ -568,6 +598,7 @@ public class HelpFormatter
      * @param group the group to append
      * @see #appendOption(StringBuffer,Option,boolean)
      */
+    @Impure
     private void appendOptionGroup(final StringBuffer buff, final OptionGroup group)
     {
         if (!group.isRequired())
@@ -602,6 +633,7 @@ public class HelpFormatter
      * @param option the Option to append
      * @param required whether the Option is required or not
      */
+    @Impure
     private static void appendOption(final StringBuffer buff, final Option option, final boolean required)
     {
         if (!required)
@@ -639,6 +671,7 @@ public class HelpFormatter
      * @param width The number of characters per line for the usage statement.
      * @param cmdLineSyntax The usage statement.
      */
+    @Impure
     public void printUsage(PrintWriter pw, int width, String cmdLineSyntax)
     {
         int argPos = cmdLineSyntax.indexOf(' ') + 1;
@@ -658,6 +691,7 @@ public class HelpFormatter
      * @param descPad the number of characters of padding to be prefixed
      * to each description line
      */
+    @Impure
     public void printOptions(PrintWriter pw, int width, Options options, 
                              int leftPad, int descPad)
     {
@@ -674,6 +708,7 @@ public class HelpFormatter
      * @param width The number of characters to display per line
      * @param text The text to be written to the PrintWriter
      */
+    @Impure
     public void printWrapped(PrintWriter pw, int width, String text)
     {
         printWrapped(pw, width, 0, text);
@@ -687,6 +722,7 @@ public class HelpFormatter
      * @param nextLineTabStop The position on the next line for the first tab.
      * @param text The text to be written to the PrintWriter
      */
+    @Impure
     public void printWrapped(PrintWriter pw, int width, int nextLineTabStop, String text)
     {
         StringBuffer sb = new StringBuffer(text.length());
@@ -711,6 +747,7 @@ public class HelpFormatter
      *
      * @return the StringBuffer with the rendered Options contents.
      */
+    @Impure
     protected StringBuffer renderOptions(StringBuffer sb, int width, Options options, int leftPad, int descPad)
     {
         final String lpad = createPadding(leftPad);
@@ -806,6 +843,7 @@ public class HelpFormatter
      *
      * @return the StringBuffer with the rendered Options contents.
      */
+    @Impure
     protected StringBuffer renderWrappedText(StringBuffer sb, int width, 
                                              int nextLineTabStop, String text)
     {
@@ -863,6 +901,7 @@ public class HelpFormatter
      * @return postion on which the text must be wrapped or -1 if the wrap
      * position is at the end of the text
      */
+    @Pure
     protected int findWrapPos(String text, int width, int startPos)
     {
         int pos = -1;
@@ -916,6 +955,7 @@ public class HelpFormatter
      *
      * @return The String of padding
      */
+    @Impure
     protected String createPadding(int len)
     {
         StringBuffer sb = new StringBuffer(len);
@@ -935,6 +975,7 @@ public class HelpFormatter
      *
      * @return The String of without the trailing padding
      */
+    @SideEffectFree
     protected String rtrim(String s)
     {
         if ((s == null) || (s.length() == 0))
@@ -973,6 +1014,8 @@ public class HelpFormatter
          *         the first argument is less than, equal to, or greater than the
          *         second.
          */
+        @Pure
+        @Impure
         public int compare(Object o1, Object o2)
         {
             Option opt1 = (Option) o1;

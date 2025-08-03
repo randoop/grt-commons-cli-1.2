@@ -16,6 +16,9 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.Impure;
 
 /**
  * Validates an Option string.
@@ -42,6 +45,8 @@ class OptionValidator
      * @param opt The option string to validate
      * @throws IllegalArgumentException if the Option is not valid.
      */
+    @SideEffectFree
+    @Impure
     static void validateOption(String opt) throws IllegalArgumentException
     {
         // check that opt is not NULL
@@ -83,6 +88,8 @@ class OptionValidator
      * @return true if <code>c</code> is a letter, ' ', '?' or '@',
      *         otherwise false.
      */
+    @Pure
+    @Impure
     private static boolean isValidOpt(char c)
     {
         return isValidChar(c) || c == ' ' || c == '?' || c == '@';
@@ -94,6 +101,7 @@ class OptionValidator
      * @param c the character to validate
      * @return true if <code>c</code> is a letter.
      */
+    @Pure
     private static boolean isValidChar(char c)
     {
         return Character.isJavaIdentifierPart(c);

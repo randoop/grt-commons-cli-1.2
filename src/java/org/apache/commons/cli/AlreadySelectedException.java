@@ -16,6 +16,9 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.Impure;
 
 /**
  * Thrown when more than one option in an option group
@@ -38,6 +41,8 @@ public class AlreadySelectedException extends ParseException
      *
      * @param message the detail message
      */
+    @SideEffectFree
+    @Impure
     public AlreadySelectedException(String message)
     {
         super(message);
@@ -51,6 +56,8 @@ public class AlreadySelectedException extends ParseException
      * @param option the option that triggered the exception
      * @since 1.2
      */
+    @SideEffectFree
+    @Impure
     public AlreadySelectedException(OptionGroup group, Option option)
     {
         this("The option '" + option.getKey() + "' was specified but an option from this group "
@@ -65,6 +72,7 @@ public class AlreadySelectedException extends ParseException
      * @return the related option group
      * @since 1.2
      */
+    @Pure
     public OptionGroup getOptionGroup()
     {
         return group;
@@ -76,6 +84,7 @@ public class AlreadySelectedException extends ParseException
      * @return the related option
      * @since 1.2
      */
+    @Pure
     public Option getOption()
     {
         return option;

@@ -17,6 +17,9 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +88,8 @@ public class Option implements Cloneable, Serializable
      * @throws IllegalArgumentException if there are any non valid
      * Option characters in <code>opt</code>.
      */
+    @SideEffectFree
+    @Impure
     public Option(String opt, String description) throws IllegalArgumentException
     {
         this(opt, null, false, description);
@@ -100,6 +105,8 @@ public class Option implements Cloneable, Serializable
      * @throws IllegalArgumentException if there are any non valid
      * Option characters in <code>opt</code>.
      */
+    @SideEffectFree
+    @Impure
     public Option(String opt, boolean hasArg, String description) throws IllegalArgumentException
     {
         this(opt, null, hasArg, description);
@@ -116,6 +123,8 @@ public class Option implements Cloneable, Serializable
      * @throws IllegalArgumentException if there are any non valid
      * Option characters in <code>opt</code>.
      */
+    @SideEffectFree
+    @Impure
     public Option(String opt, String longOpt, boolean hasArg, String description)
            throws IllegalArgumentException
     {
@@ -141,6 +150,8 @@ public class Option implements Cloneable, Serializable
      *
      * @return the id of this Option
      */
+    @Pure
+    @Impure
     public int getId()
     {
         return getKey().charAt(0);
@@ -151,6 +162,7 @@ public class Option implements Cloneable, Serializable
      * 
      * @return the 'unique' Option identifier
      */
+    @Pure
     String getKey()
     {
         // if 'opt' is null, then it is a 'long' option
@@ -172,6 +184,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return The name of this option
      */
+    @Pure
     public String getOpt()
     {
         return opt;
@@ -182,6 +195,7 @@ public class Option implements Cloneable, Serializable
      * 
      * @return The type of this option
      */
+    @Pure
     public Object getType()
     {
         return type;
@@ -192,6 +206,7 @@ public class Option implements Cloneable, Serializable
      *
      * @param type the type of this Option
      */
+    @Impure
     public void setType(Object type)
     {
         this.type = type;
@@ -202,6 +217,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return Long name of this option, or null, if there is no long name
      */
+    @Pure
     public String getLongOpt()
     {
         return longOpt;
@@ -212,6 +228,7 @@ public class Option implements Cloneable, Serializable
      *
      * @param longOpt the long name of this Option
      */
+    @Impure
     public void setLongOpt(String longOpt)
     {
         this.longOpt = longOpt;
@@ -223,6 +240,7 @@ public class Option implements Cloneable, Serializable
      * @param optionalArg specifies whether the Option can have
      * an optional argument.
      */
+    @Impure
     public void setOptionalArg(boolean optionalArg)
     {
         this.optionalArg = optionalArg;
@@ -231,6 +249,7 @@ public class Option implements Cloneable, Serializable
     /**
      * @return whether this Option can have an optional argument
      */
+    @Pure
     public boolean hasOptionalArg()
     {
         return optionalArg;
@@ -241,6 +260,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return boolean flag indicating existence of a long name
      */
+    @Pure
     public boolean hasLongOpt()
     {
         return longOpt != null;
@@ -251,6 +271,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return boolean flag indicating if an argument is required
      */
+    @Pure
     public boolean hasArg()
     {
         return numberOfArgs > 0 || numberOfArgs == UNLIMITED_VALUES;
@@ -261,6 +282,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return The string description of this option
      */
+    @Pure
     public String getDescription()
     {
         return description;
@@ -272,6 +294,7 @@ public class Option implements Cloneable, Serializable
      * @param description The description of this option
      * @since 1.1
      */
+    @Impure
     public void setDescription(String description)
     {
         this.description = description;
@@ -282,6 +305,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return boolean flag indicating if an argument is required
      */
+    @Pure
     public boolean isRequired()
     {
         return required;
@@ -292,6 +316,7 @@ public class Option implements Cloneable, Serializable
      *
      * @param required specifies whether this Option is mandatory
      */
+    @Impure
     public void setRequired(boolean required)
     {
         this.required = required;
@@ -302,6 +327,7 @@ public class Option implements Cloneable, Serializable
      *
      * @param argName the display name for the argument value.
      */
+    @Impure
     public void setArgName(String argName)
     {
         this.argName = argName;
@@ -312,6 +338,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return the display name for the argument value.
      */
+    @Pure
     public String getArgName()
     {
         return argName;
@@ -324,6 +351,7 @@ public class Option implements Cloneable, Serializable
      * @return if the display name for the argument value has been
      * set.
      */
+    @Pure
     public boolean hasArgName()
     {
         return argName != null && argName.length() > 0;
@@ -334,6 +362,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return boolean flag indicating if multiple values are allowed
      */
+    @Pure
     public boolean hasArgs()
     {
         return numberOfArgs > 1 || numberOfArgs == UNLIMITED_VALUES;
@@ -344,6 +373,7 @@ public class Option implements Cloneable, Serializable
      *
      * @param num the number of argument values
      */
+    @Impure
     public void setArgs(int num)
     {
         this.numberOfArgs = num;
@@ -355,6 +385,7 @@ public class Option implements Cloneable, Serializable
      *
      * @param sep The value separator.
      */
+    @Impure
     public void setValueSeparator(char sep)
     {
         this.valuesep = sep;
@@ -365,6 +396,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return the value separator character.
      */
+    @Pure
     public char getValueSeparator()
     {
         return valuesep;
@@ -376,6 +408,7 @@ public class Option implements Cloneable, Serializable
      * @return whether this Option has specified a value separator.
      * @since 1.1
      */
+    @Pure
     public boolean hasValueSeparator()
     {
         return valuesep > 0;
@@ -386,6 +419,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return num the number of argument values
      */
+    @Pure
     public int getArgs()
     {
         return numberOfArgs;
@@ -396,6 +430,7 @@ public class Option implements Cloneable, Serializable
      * 
      * @param value is a/the value of this Option
      */
+    @Impure
     void addValueForProcessing(String value)
     {
         switch (numberOfArgs)
@@ -419,6 +454,7 @@ public class Option implements Cloneable, Serializable
      *
      * @since 1.0.1
      */
+    @Impure
     private void processValue(String value)
     {
         // this Option has a separator character
@@ -463,6 +499,7 @@ public class Option implements Cloneable, Serializable
      *
      * @since 1.0.1
      */
+    @Impure
     private void add(String value)
     {
         if ((numberOfArgs > 0) && (values.size() > (numberOfArgs - 1)))
@@ -481,6 +518,7 @@ public class Option implements Cloneable, Serializable
      * @return the value/first value of this Option or 
      * <code>null</code> if there is no value.
      */
+    @Impure
     public String getValue()
     {
         return hasNoValues() ? null : (String) values.get(0);
@@ -498,6 +536,8 @@ public class Option implements Cloneable, Serializable
      * @throws IndexOutOfBoundsException if index is less than 1
      * or greater than the number of the values for this Option.
      */
+    @Pure
+    @Impure
     public String getValue(int index) throws IndexOutOfBoundsException
     {
         return hasNoValues() ? null : (String) values.get(index);
@@ -513,6 +553,7 @@ public class Option implements Cloneable, Serializable
      * @return the value/first value of this Option or the 
      * <code>defaultValue</code> if there are no values.
      */
+    @Impure
     public String getValue(String defaultValue)
     {
         String value = getValue();
@@ -527,6 +568,8 @@ public class Option implements Cloneable, Serializable
      * @return the values of this Option as a String array 
      * or null if there are no values
      */
+    @SideEffectFree
+    @Impure
     public String[] getValues()
     {
         return hasNoValues() ? null : (String[]) values.toArray(new String[values.size()]);
@@ -536,6 +579,7 @@ public class Option implements Cloneable, Serializable
      * @return the values of this Option as a List
      * or null if there are no values
      */
+    @Pure
     public List getValuesList()
     {
         return values;
@@ -546,6 +590,7 @@ public class Option implements Cloneable, Serializable
      *
      * @return Stringified form of this object
      */
+    @Impure
     public String toString()
     {
         StringBuffer buf = new StringBuffer().append("[ option: ");
@@ -585,11 +630,13 @@ public class Option implements Cloneable, Serializable
      *
      * @return whether this Option has any values.
      */
+    @Pure
     private boolean hasNoValues()
     {
         return values.isEmpty();
     }
 
+    @Pure
     public boolean equals(Object o)
     {
         if (this == o)
@@ -616,6 +663,7 @@ public class Option implements Cloneable, Serializable
         return true;
     }
 
+    @Pure
     public int hashCode()
     {
         int result;
@@ -634,6 +682,7 @@ public class Option implements Cloneable, Serializable
      *
      * @throws RuntimeException
      */
+    @Impure
     public Object clone()
     {
         try
@@ -654,6 +703,7 @@ public class Option implements Cloneable, Serializable
      *
      * See: <a href="https://issues.apache.org/jira/browse/CLI-71">CLI-71</a>
      */
+    @Impure
     void clearValues()
     {
         values.clear();
@@ -665,6 +715,7 @@ public class Option implements Cloneable, Serializable
      * @deprecated
      * @throws UnsupportedOperationException
      */
+    @Impure
     public boolean addValue(String value)
     {
         throw new UnsupportedOperationException("The addValue method is not intended for client use. "

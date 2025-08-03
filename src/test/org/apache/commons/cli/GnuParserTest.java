@@ -16,9 +16,11 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.Impure;
 
 public class GnuParserTest extends ParserTestCase
 {
+    @Impure
     public void setUp()
     {
         super.setUp();

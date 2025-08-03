@@ -16,6 +16,7 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 
 /**
  * Base for Exceptions thrown during parsing of a command-line.
@@ -31,6 +32,7 @@ public class ParseException extends Exception
      *
      * @param message the detail message
      */
+    @SideEffectFree
     public ParseException(String message)
     {
         super(message);

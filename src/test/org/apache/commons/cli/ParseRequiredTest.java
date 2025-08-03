@@ -17,6 +17,7 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
 import junit.framework.TestCase;
 
 /**
@@ -28,6 +29,7 @@ public class ParseRequiredTest extends TestCase
     private Options _options = null;
     private CommandLineParser parser = new PosixParser();
 
+    @Impure
     public void setUp()
     {
         _options = new Options()
@@ -42,6 +44,7 @@ public class ParseRequiredTest extends TestCase
                                      .create( 'b' ) );
     }
 
+    @Impure
     public void testWithRequiredOption() throws Exception
     {
         String[] args = new String[] {  "-b", "file" };
@@ -54,6 +57,7 @@ public class ParseRequiredTest extends TestCase
         assertTrue( "Confirm NO of extra args", cl.getArgList().size() == 0);
     }
 
+    @Impure
     public void testOptionAndRequiredOption() throws Exception
     {
         String[] args = new String[] {  "-a", "-b", "file" };
@@ -66,6 +70,7 @@ public class ParseRequiredTest extends TestCase
         assertTrue( "Confirm NO of extra args", cl.getArgList().size() == 0);
     }
 
+    @Impure
     public void testMissingRequiredOption()
     {
         String[] args = new String[] { "-a" };
@@ -86,6 +91,7 @@ public class ParseRequiredTest extends TestCase
         }
     }
 
+    @Impure
     public void testMissingRequiredOptions()
     {
         String[] args = new String[] { "-a" };
@@ -113,6 +119,7 @@ public class ParseRequiredTest extends TestCase
         }
     }
 
+    @Impure
     public void testReuseOptionsTwice() throws Exception
     {
         Options opts = new Options();

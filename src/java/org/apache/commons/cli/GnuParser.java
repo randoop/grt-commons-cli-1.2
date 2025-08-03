@@ -17,6 +17,7 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class GnuParser extends Parser
      *                        a non option has been encountered
      * @return a String array of the flattened arguments
      */
+    @Impure
     protected String[] flatten(Options options, String[] arguments, boolean stopAtNonOption)
     {
         List tokens = new ArrayList();

@@ -17,6 +17,7 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -27,6 +28,7 @@ public class ValueTest extends TestCase
     private CommandLine _cl = null;
     private Options opts = new Options();
 
+    @Impure
     public void setUp() throws Exception
     {
         opts.addOption("a", false, "toggle -a");
@@ -52,12 +54,14 @@ public class ValueTest extends TestCase
         _cl = parser.parse(opts,args);
     }
 
+    @Impure
     public void testShortNoArg()
     {
         assertTrue( _cl.hasOption("a") );
         assertNull( _cl.getOptionValue("a") );
     }
 
+    @Impure
     public void testShortWithArg()
     {
         assertTrue( _cl.hasOption("b") );
@@ -65,12 +69,14 @@ public class ValueTest extends TestCase
         assertEquals( _cl.getOptionValue("b"), "foo");
     }
 
+    @Impure
     public void testLongNoArg()
     {
         assertTrue( _cl.hasOption("c") );
         assertNull( _cl.getOptionValue("c") );
     }
 
+    @Impure
     public void testLongWithArg()
     {
         assertTrue( _cl.hasOption("d") );
@@ -78,6 +84,7 @@ public class ValueTest extends TestCase
         assertEquals( _cl.getOptionValue("d"), "bar");
     }
 
+    @Impure
     public void testShortOptionalArgNoValue() throws Exception
     {
         String[] args = new String[] { "-e" };
@@ -88,6 +95,7 @@ public class ValueTest extends TestCase
         assertNull( cmd.getOptionValue("e") );
     }
 
+    @Impure
     public void testShortOptionalArgValue() throws Exception
     {
         String[] args = new String[] { "-e", "everything" };
@@ -98,6 +106,7 @@ public class ValueTest extends TestCase
         assertEquals( "everything", cmd.getOptionValue("e") );
     }
 
+    @Impure
     public void testLongOptionalNoValue() throws Exception
     {
         String[] args = new String[] { "--fish" };
@@ -108,6 +117,7 @@ public class ValueTest extends TestCase
         assertNull( cmd.getOptionValue("fish") );
     }
 
+    @Impure
     public void testLongOptionalArgValue() throws Exception
     {
         String[] args = new String[] { "--fish", "face" };
@@ -118,6 +128,7 @@ public class ValueTest extends TestCase
         assertEquals( "face", cmd.getOptionValue("fish") );
     }
 
+    @Impure
     public void testShortOptionalArgValues() throws Exception
     {
         String[] args = new String[] { "-j", "ink", "idea" };
@@ -131,6 +142,7 @@ public class ValueTest extends TestCase
         assertEquals( cmd.getArgs().length, 0 );
     }
 
+    @Impure
     public void testLongOptionalArgValues() throws Exception
     {
         String[] args = new String[] { "--gravy", "gold", "garden" };
@@ -144,6 +156,7 @@ public class ValueTest extends TestCase
         assertEquals( cmd.getArgs().length, 0 );
     }
 
+    @Impure
     public void testShortOptionalNArgValues() throws Exception
     {
         String[] args = new String[] { "-i", "ink", "idea", "isotope", "ice" };
@@ -159,6 +172,7 @@ public class ValueTest extends TestCase
         assertEquals( "ice", cmd.getArgs()[1] );
     }
 
+    @Impure
     public void testLongOptionalNArgValues() throws Exception
     {
         String[] args = new String[] { 
@@ -176,6 +190,7 @@ public class ValueTest extends TestCase
         assertEquals( "head", cmd.getArgs()[0] );
     }
 
+    @Impure
     public void testPropertyOptionSingularValue() throws Exception
     {
         Properties properties = new Properties();
@@ -189,6 +204,7 @@ public class ValueTest extends TestCase
         assertTrue( !cmd.hasOption("fake") );
     }
 
+    @Impure
     public void testPropertyOptionFlags() throws Exception
     {
         Properties properties = new Properties();
@@ -236,6 +252,7 @@ public class ValueTest extends TestCase
         assertTrue( !cmd.hasOption("e") );
     } 
 
+    @Impure
     public void testPropertyOptionMultipleValues() throws Exception
     {
         Properties properties = new Properties();
@@ -252,6 +269,7 @@ public class ValueTest extends TestCase
         assertTrue( Arrays.equals( values, cmd.getOptionValues('k') ) );
     }
 
+    @Impure
     public void testPropertyOverrideValues() throws Exception
     {
         String[] args = new String[] { 

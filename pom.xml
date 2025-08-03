@@ -125,11 +125,18 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker-qual</artifactId>
+      <version>3.49.5</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <properties>
-    <maven.compile.source>1.4</maven.compile.source>
-    <maven.compile.target>1.4</maven.compile.target>
+    <!-- Source 1.4 does not support annotations -->
+    <maven.compile.source>1.5</maven.compile.source>
+    <maven.compile.target>1.5</maven.compile.target>
     <commons.componentid>cli</commons.componentid>
     <commons.release.version>1.2</commons.release.version>
     <commons.release.name>commons-cli-${commons.release.version}</commons.release.name>

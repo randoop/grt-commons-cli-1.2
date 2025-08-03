@@ -17,6 +17,8 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -42,17 +44,20 @@ public abstract class Parser implements CommandLineParser
     /** list of required options strings */
     private List requiredOptions;
 
+    @Impure
     protected void setOptions(final Options options)
     {
         this.options = options;
         this.requiredOptions = new ArrayList(options.getRequiredOptions());
     }
 
+    @Pure
     protected Options getOptions()
     {
         return options;
     }
 
+    @Pure
     protected List getRequiredOptions()
     {
         return requiredOptions;
@@ -68,6 +73,7 @@ public abstract class Parser implements CommandLineParser
      * flattening when a non option has been encountered
      * @return a String array of the flattened arguments
      */
+    @Impure
     protected abstract String[] flatten(Options opts, String[] arguments, boolean stopAtNonOption);
 
     /**
@@ -80,6 +86,7 @@ public abstract class Parser implements CommandLineParser
      * @throws ParseException if an error occurs when parsing the
      * arguments.
      */
+    @Impure
     public CommandLine parse(Options options, String[] arguments) throws ParseException
     {
         return parse(options, arguments, null, false);
@@ -97,6 +104,7 @@ public abstract class Parser implements CommandLineParser
      *
      * @since 1.1
      */
+    @Impure
     public CommandLine parse(Options options, String[] arguments, Properties properties) throws ParseException
     {
         return parse(options, arguments, properties, false);
@@ -114,6 +122,7 @@ public abstract class Parser implements CommandLineParser
      * @return the <code>CommandLine</code>
      * @throws ParseException if an error occurs when parsing the arguments.
      */
+    @Impure
     public CommandLine parse(Options options, String[] arguments, boolean stopAtNonOption) throws ParseException
     {
         return parse(options, arguments, null, stopAtNonOption);
@@ -136,6 +145,7 @@ public abstract class Parser implements CommandLineParser
      *
      * @since 1.1
      */
+    @Impure
     public CommandLine parse(Options options, String[] arguments, Properties properties, boolean stopAtNonOption)
             throws ParseException
     {
@@ -238,6 +248,7 @@ public abstract class Parser implements CommandLineParser
      *
      * @param properties The value properties to be processed.
      */
+    @Impure
     protected void processProperties(Properties properties)
     {
         if (properties == null)
@@ -291,6 +302,7 @@ public abstract class Parser implements CommandLineParser
      * @throws MissingOptionException if any of the required Options
      * are not present.
      */
+    @Impure
     protected void checkRequiredOptions() throws MissingOptionException
     {
         // if there are required options that have not been processsed
@@ -312,6 +324,7 @@ public abstract class Parser implements CommandLineParser
      * @throws ParseException if an argument value is required
      * and it is has not been found.
      */
+    @Impure
     public void processArgs(Option opt, ListIterator iter) throws ParseException
     {
         // loop until an option is found
@@ -353,6 +366,7 @@ public abstract class Parser implements CommandLineParser
      *
      * @throws ParseException if <code>arg</code> does not represent an Option
      */
+    @Impure
     protected void processOption(String arg, ListIterator iter) throws ParseException
     {
         boolean hasOption = getOptions().hasOption(arg);

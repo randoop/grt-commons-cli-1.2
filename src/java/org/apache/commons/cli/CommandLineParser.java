@@ -16,6 +16,7 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.Impure;
 
 /**
  * A class that implements the <code>CommandLineParser</code> interface
@@ -37,6 +38,7 @@ public interface CommandLineParser
      * @throws ParseException if there are any problems encountered
      * while parsing the command line tokens.
      */
+    @Impure
     CommandLine parse(Options options, String[] arguments) throws ParseException;
 
     /**
@@ -70,6 +72,7 @@ public interface CommandLineParser
      * @throws ParseException if there are any problems encountered
      * while parsing the command line tokens.
      */
+    @Impure
     CommandLine parse(Options options, String[] arguments, boolean stopAtNonOption) throws ParseException;
 
     /**

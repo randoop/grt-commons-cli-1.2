@@ -18,6 +18,7 @@
 
 package org.apache.commons.cli.bug;
 
+import org.checkerframework.dataflow.qual.Impure;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.MissingArgumentException;
@@ -32,6 +33,7 @@ public class BugCLI71Test extends TestCase {
     private Options options;
     private CommandLineParser parser;
 
+    @Impure
     public void setUp() {
         options = new Options();
 
@@ -46,6 +48,7 @@ public class BugCLI71Test extends TestCase {
         parser = new PosixParser();
     }
 
+    @Impure
     public void testBasic() throws Exception {
         String[] args = new String[] { "-a", "Caesar", "-k", "A" };
         CommandLine line = parser.parse( options, args);
@@ -53,6 +56,7 @@ public class BugCLI71Test extends TestCase {
         assertEquals( "A", line.getOptionValue("k") );
     }
 
+    @Impure
     public void testMistakenArgument() throws Exception {
         String[] args = new String[] { "-a", "Caesar", "-k", "A" };
         CommandLine line = parser.parse( options, args);
@@ -62,6 +66,7 @@ public class BugCLI71Test extends TestCase {
         assertEquals( "a", line.getOptionValue("k") );
     }
 
+    @Impure
     public void testLackOfError() throws Exception {
         String[] args = new String[] { "-k", "-a",  "Caesar" };
         try {
@@ -72,6 +77,7 @@ public class BugCLI71Test extends TestCase {
         }
     }
 
+    @Impure
     public void testGetsDefaultIfOptional() throws Exception {
         String[] args = new String[] { "-k", "-a", "Caesar" };
         options.getOption("k").setOptionalArg(true);

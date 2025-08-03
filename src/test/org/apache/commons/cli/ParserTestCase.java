@@ -17,6 +17,7 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public abstract class ParserTestCase extends TestCase
 
     protected Options options;
 
+    @Impure
     public void setUp()
     {
         options = new Options()
@@ -42,6 +44,7 @@ public abstract class ParserTestCase extends TestCase
             .addOption("c", "copt", false, "turn [c] on or off");
     }
 
+    @Impure
     public void testSimpleShort() throws Exception
     {
         String[] args = new String[] { "-a",
@@ -56,6 +59,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue("Confirm size of extra args", cl.getArgList().size() == 2);
     }
 
+    @Impure
     public void testSimpleLong() throws Exception
     {
         String[] args = new String[] { "--enable-a",
@@ -71,6 +75,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue( "Confirm size of extra args", cl.getArgList().size() == 2);
     }
 
+    @Impure
     public void testMultiple() throws Exception
     {
         String[] args = new String[] { "-c",
@@ -90,6 +95,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue("Confirm  value of extra arg: " + cl.getArgList().get(0), cl.getArgList().get(0).equals("foobar"));
     }
 
+    @Impure
     public void testMultipleWithLong() throws Exception
     {
         String[] args = new String[] { "--copt",
@@ -109,6 +115,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue("Confirm  value of extra arg: " + cl.getArgList().get(0), cl.getArgList().get(0).equals("foobar"));
     }
 
+    @Impure
     public void testUnrecognizedOption() throws Exception
     {
         String[] args = new String[] { "-a", "-d", "-b", "toast", "foo", "bar" };
@@ -124,6 +131,7 @@ public abstract class ParserTestCase extends TestCase
         }
     }    
 
+    @Impure
     public void testMissingArg() throws Exception
     {
         String[] args = new String[] { "-b" };
@@ -143,6 +151,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue( "Confirm MissingArgumentException caught", caught );
     }
 
+    @Impure
     public void testDoubleDash() throws Exception
     {
         String[] args = new String[] { "--copt",
@@ -156,6 +165,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue("Confirm 2 extra args: " + cl.getArgList().size(), cl.getArgList().size() == 2);
     }
 
+    @Impure
     public void testSingleDash() throws Exception
     {
         String[] args = new String[] { "--copt",
@@ -172,6 +182,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue("Confirm value of extra arg: " + cl.getArgList().get(0), cl.getArgList().get(0).equals("-"));
     }
 
+    @Impure
     public void testStopAtUnexpectedArg() throws Exception
     {
         String[] args = new String[] { "-c",
@@ -184,6 +195,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue("Confirm  3 extra args: " + cl.getArgList().size(), cl.getArgList().size() == 3);
     }
 
+   @Impure
    public void testStopAtExpectedArg() throws Exception
     {
         String[] args = new String[]{"-b", "foo"};
@@ -195,6 +207,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue("Confirm no extra args: " + cl.getArgList().size(), cl.getArgList().size() == 0);
     }
 
+    @Impure
     public void testStopAtNonOptionShort() throws Exception
     {
         String[] args = new String[]{"-z",
@@ -206,6 +219,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue("Confirm  3 extra args: " + cl.getArgList().size(), cl.getArgList().size() == 3);
     }
 
+    @Impure
     public void testStopAtNonOptionLong() throws Exception
     {
         String[] args = new String[]{"--zop==1",
@@ -219,6 +233,7 @@ public abstract class ParserTestCase extends TestCase
         assertTrue("Confirm  3 extra args: " + cl.getArgList().size(), cl.getArgList().size() == 3);
     }
 
+    @Impure
     public void testNegativeArgument() throws Exception
     {
         String[] args = new String[] { "-b", "-1"} ;
@@ -227,6 +242,7 @@ public abstract class ParserTestCase extends TestCase
         assertEquals("-1", cl.getOptionValue("b"));
     }
 
+    @Impure
     public void testArgumentStartingWithHyphen() throws Exception
     {
         String[] args = new String[]{"-b", "-foo"};
@@ -235,6 +251,7 @@ public abstract class ParserTestCase extends TestCase
         assertEquals("-foo", cl.getOptionValue("b"));
     }
 
+    @Impure
     public void testShortWithEqual() throws Exception
     {
         String[] args = new String[] { "-f=bar" };
@@ -247,6 +264,7 @@ public abstract class ParserTestCase extends TestCase
         assertEquals("bar", cl.getOptionValue("foo"));
     }
 
+    @Impure
     public void testShortWithoutEqual() throws Exception
     {
         String[] args = new String[] { "-fbar" };
@@ -259,6 +277,7 @@ public abstract class ParserTestCase extends TestCase
         assertEquals("bar", cl.getOptionValue("foo"));
     }
 
+    @Impure
     public void testLongWithEqual() throws Exception
     {
         String[] args = new String[] { "--foo=bar" };
@@ -271,6 +290,7 @@ public abstract class ParserTestCase extends TestCase
         assertEquals("bar", cl.getOptionValue("foo"));
     }
 
+    @Impure
     public void testLongWithEqualSingleDash() throws Exception
     {
         String[] args = new String[] { "-foo=bar" };
@@ -283,6 +303,7 @@ public abstract class ParserTestCase extends TestCase
         assertEquals("bar", cl.getOptionValue("foo"));
     }
 
+    @Impure
     public void testPropertiesOption() throws Exception
     {
         String[] args = new String[] { "-Jsource=1.5", "-J", "target", "1.5", "foo" };

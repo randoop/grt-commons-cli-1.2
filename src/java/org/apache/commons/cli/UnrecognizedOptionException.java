@@ -16,6 +16,9 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.Impure;
 
 /**
  * Exception thrown during parsing signalling an unrecognized
@@ -35,6 +38,8 @@ public class UnrecognizedOptionException extends ParseException
      *
      * @param message the detail message
      */
+    @SideEffectFree
+    @Impure
     public UnrecognizedOptionException(String message)
     {
         super(message);
@@ -48,6 +53,8 @@ public class UnrecognizedOptionException extends ParseException
      * @param option  the unrecognized option
      * @since 1.2
      */
+    @SideEffectFree
+    @Impure
     public UnrecognizedOptionException(String message, String option)
     {
         this(message);
@@ -60,6 +67,7 @@ public class UnrecognizedOptionException extends ParseException
      * @return the related option
      * @since 1.2
      */
+    @Pure
     public String getOption()
     {
         return option;

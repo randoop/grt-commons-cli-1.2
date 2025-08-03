@@ -16,6 +16,7 @@
  */
 
 package org.apache.commons.cli;
+import org.checkerframework.dataflow.qual.Pure;
 
 /**
  * The class BasicParser provides a very simple implementation of
@@ -39,6 +40,7 @@ public class BasicParser extends Parser
      * when an non option is found.
      * @return The <code>arguments</code> String array.
      */
+    @Pure
     protected String[] flatten(Options options, String[] arguments, boolean stopAtNonOption)
     {
         // just echo the arguments

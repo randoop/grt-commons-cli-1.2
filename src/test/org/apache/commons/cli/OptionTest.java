@@ -17,6 +17,8 @@
 
 package org.apache.commons.cli;
 
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Impure;
 import junit.framework.TestCase;
 
 /**
@@ -26,11 +28,14 @@ public class OptionTest extends TestCase
 {
     private static class TestOption extends Option
     {
+        @SideEffectFree
+        @Impure
         public TestOption(String opt, boolean hasArg, String description) throws IllegalArgumentException
         {
             super(opt, hasArg, description);
         }
 
+        @Impure
         public boolean addValue(String value)
         {
             addValueForProcessing(value);
@@ -38,6 +43,7 @@ public class OptionTest extends TestCase
         }
     }
 
+    @Impure
     public void testClear()
     {
         TestOption option = new TestOption("x", true, "");
@@ -49,6 +55,7 @@ public class OptionTest extends TestCase
     }
 
     // See http://issues.apache.org/jira/browse/CLI-21
+    @Impure
     public void testClone() throws CloneNotSupportedException
     {
         TestOption a = new TestOption("a", true, "");
@@ -69,18 +76,22 @@ public class OptionTest extends TestCase
     {
         private final String defaultValue;
 
+        @SideEffectFree
+        @Impure
         public DefaultOption(String opt, String description, String defaultValue) throws IllegalArgumentException
         {
             super(opt, true, description);
             this.defaultValue = defaultValue;
         }
 
+        @Impure
         public String getValue()
         {
             return super.getValue() != null ? super.getValue() : defaultValue;
         }
     }
 
+    @Impure
     public void testSubclass() throws CloneNotSupportedException
     {
         Option option = new DefaultOption("f", "file", "myfile.txt");
@@ -89,6 +100,7 @@ public class OptionTest extends TestCase
         assertEquals(DefaultOption.class, clone.getClass());
     }
 
+    @Impure
     public void testHasArgName()
     {
         Option option = new Option("f", null);
@@ -103,6 +115,7 @@ public class OptionTest extends TestCase
         assertTrue(option.hasArgName());
     }
 
+    @Impure
     public void testHasArgs()
     {
         Option option = new Option("f", null);
@@ -123,6 +136,7 @@ public class OptionTest extends TestCase
         assertFalse(option.hasArgs());
     }
 
+    @Impure
     public void testGetValue()
     {
         Option option = new Option("f", null);
